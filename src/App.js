@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import {useState ,useEffect } from "react";
 import MovieCard from "./moviecard";
 import "./App.css";
 
@@ -14,11 +14,12 @@ const movie1 = {
 }
 
 const App = () => {
+    const [movies, setMovies] = useState([])
 
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
-        console.log(data)
+        setMovies(data.search)
     }
 
     useEffect (() =>{
@@ -39,11 +40,29 @@ const App = () => {
                         alt="search"
                         />
            </div>
+           {
+                        movies?.length > 0 
+                        ?(
+                        <div className="container">
+                            {movies.map((movie)=> (
+                                <MovieCard movie={movie}/>
 
-            <div className="container">
-                <MovieCard movie1={movie1}/>
+                            ))}
+                            
+                            
+            
+                        </div>
+            
+                        ) : (
+                            <div className="empty">
+                                <h2>No movies found</h2>
 
-            </div>
+                            </div>
+                            
+                        )
+           }
+
+
         </div>
     )
 }
