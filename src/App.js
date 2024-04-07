@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 
-const API_URL = "https://www.omdbapi.com?apikeys=4e66f495"
+const API_URL = 'https://www.omdbapi.com?apikey=4e66f495'
 
 const App = () => {
 
@@ -12,6 +12,7 @@ const App = () => {
     }
 
     useEffect (() =>{
+        searchMovies("Spiderman")
 
     },[])
 
